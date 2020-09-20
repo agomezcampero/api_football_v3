@@ -1,6 +1,8 @@
 require 'uri'
 require 'net/http'
 require 'openssl'
+require 'json'
+require 'api-football/error'
 
 module ApiFootball
   module Request
@@ -14,7 +16,9 @@ module ApiFootball
 
     def perform_get_request
       response = http.request(request)
-      response.read_body
+      response_body = response.read_body ? JSON.parse(response.read_body) : ''
+      raise(error(response.code), response_body) unless response.kind_of?(Net::HTTPSuccess)
+      response_body
     end
 
     def url
@@ -36,6 +40,11 @@ module ApiFootball
       request = Net::HTTP::Get.new(url)
       request["x-rapidapi-key"] = @api_key
       request
+    end
+
+    def error(code)
+      klass = ApiFootball::Error::ERRORS[code.to_i]
+      klass ? klass : ApiFootball::Error
     end
   end
 end
