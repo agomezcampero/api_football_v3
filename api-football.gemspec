@@ -4,7 +4,7 @@ Gem::Specification.new do |s|
   s.authors = ["agomezcampero"]
   s.email = ["agomezcampero@gmail.com"]
   s.date = "2020-09-17"
-  s.summary = "A gem to connect to api-football, www.api-football.com"
+  s.summary = "A gem to connect to api-football v3, www.api-football.com"
   s.files = %w[api-football.gemspec] + Dir['lib/**/*.rb']
   s.require_paths = ["lib"]
 end
