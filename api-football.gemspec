@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "api-football"
-  s.version = "0.0.0"
+  s.version = "0.0.1"
   s.authors = ["agomezcampero"]
   s.email = ["agomezcampero@gmail.com"]
   s.date = "2020-09-17"
