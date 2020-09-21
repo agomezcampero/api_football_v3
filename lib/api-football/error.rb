@@ -30,7 +30,7 @@ module ApiFootball
       500 => ApiFootball::Error::InternalServerError,
       502 => ApiFootball::Error::BadGateway,
       503 => ApiFootball::Error::ServiceUnavailable,
-      504 => ApiFootball::Error::GatewayTimeout,
+      504 => ApiFootball::Error::GatewayTimeout
     }.freeze
   end
 end

@@ -17,7 +17,8 @@ module ApiFootball
     def perform_get_request
       response = http.request(request)
       response_body = response.read_body ? JSON.parse(response.read_body) : ''
-      raise(error(response.code), response_body) unless response.kind_of?(Net::HTTPSuccess)
+      raise(error(response.code), response_body) unless response.is_a?(Net::HTTPSuccess)
+
       response_body
     end
 
@@ -44,7 +45,7 @@ module ApiFootball
 
     def error(code)
       klass = ApiFootball::Error::ERRORS[code.to_i]
-      klass ? klass : ApiFootball::Error
+      klass || ApiFootball::Error
     end
   end
 end

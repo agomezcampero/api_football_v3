@@ -516,3 +516,5 @@ RSpec/ExpectChange:
   EnforcedStyle: block
 RSpec/AnyInstance:
   Enabled: false
+RSpec/FilePath:
+  Enabled: false

@@ -15,7 +15,9 @@ describe ApiFootball::Rest::Fixtures do
   include_examples('mapped endpoints', endpoints)
 
   describe 'live' do
-    let(:client) { ApiFootball::Client.new(base_url: 'https://www.api-football.com', api_key: 'AK') }
+    let(:client) do
+      ApiFootball::Client.new(base_url: 'https://www.api-football.com', api_key: 'AK')
+    end
     let(:path) { '/fixtures' }
     let(:options) { { live: 'all' } }
 

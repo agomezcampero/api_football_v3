@@ -5,7 +5,6 @@ require 'api-football'
 require 'rspec'
 require 'webmock/rspec'
 
-
 def stub_get(path)
   stub_request(:get, 'https://www.api-football.com' + path)
 end
