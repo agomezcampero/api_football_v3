@@ -1,7 +1,8 @@
 # The Football API Ruby Gem
 
 A Ruby interface to [API Football v3](https://www.api-football.com)
-This gem won't work git v1 or v2 of the API
+
+This gem won't work with v1 or v2 of the API
 
 ## Installation
 Add this line to your application's Gemfile:
@@ -16,7 +17,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install chartmogul-ruby
+    $ gem install api-football
 
 ## Configurations
 Configure `api-football` with your API-Key and the URL (depends on whether you are subscribed via RapidApi or ApiSports)
@@ -29,7 +30,176 @@ end
 ```
 
 ## Usage
-All endpoints can be accessed using `get(endpoint, options)` and a JSON object will be returned
+Endpoints can be accessed using built in functions that take options as a parameter.
+In all cases options is a hash and they return a JSON object.
+
+Examples:
+```ruby
+@client.countries(search: "Chile")
+```
+Response:
+```
+{
+    "get": "countries",
+    "parameters": {
+        "search": "Chile"
+    },
+    "errors": [],
+    "results": 1,
+    "paging": {
+        "current": 1,
+        "total": 1
+    },
+    "response": [
+        {
+            "name": "Chile",
+            "code": "CL",
+            "flag": "https://media.api-sports.io/flags/cl.svg"
+        }
+    ]
+}
+```
+
+```ruby
+@client.leagues(country: "Chile", season: 2020)
+```
+Response:
+```
+{
+    "get": "leagues",
+    "parameters": {
+        "country": "Chile",
+        "season": "2020"
+    },
+    "errors": [],
+    "results": 2,
+    "paging": {
+        "current": 1,
+        "total": 1
+    },
+    "response": [
+        {
+            "league": {
+                "id": 265,
+                "name": "Primera Division",
+                "type": "League",
+                "logo": "https://media.api-sports.io/football/leagues/265.png"
+            },
+            "country": {
+                "name": "Chile",
+                "code": "CL",
+                "flag": "https://media.api-sports.io/flags/cl.svg"
+            },
+            "seasons": [
+                {
+                    "year": 2020,
+                    "start": "2020-01-24",
+                    "end": "2020-10-11",
+                    "current": true,
+                    "coverage": {
+                        "fixtures": {
+                            "events": true,
+                            "lineups": true,
+                            "statistics_fixtures": true,
+                            "statistics_players": true
+                        },
+                        "standings": true,
+                        "players": true,
+                        "top_scorers": true,
+                        "predictions": true,
+                        "odds": true
+                    }
+                }
+            ]
+        },
+        {
+            "league": {
+                "id": 266,
+                "name": "Primera B",
+                "type": "League",
+                "logo": "https://media.api-sports.io/football/leagues/266.png"
+            },
+            "country": {
+                "name": "Chile",
+                "code": "CL",
+                "flag": "https://media.api-sports.io/flags/cl.svg"
+            },
+            "seasons": [
+                {
+                    "year": 2020,
+                    "start": "2020-02-22",
+                    "end": "2020-10-05",
+                    "current": true,
+                    "coverage": {
+                        "fixtures": {
+                            "events": true,
+                            "lineups": true,
+                            "statistics_fixtures": false,
+                            "statistics_players": false
+                        },
+                        "standings": true,
+                        "players": true,
+                        "top_scorers": true,
+                        "predictions": true,
+                        "odds": true
+                    }
+                }
+            ]
+        }
+    ]
+}
+```
+
+
+Here you can see how you can call all available endpoints.
+For information on options on each endpoint please review the [official documentation](https://www.api-football.com/documentation-beta).
+
+
+```ruby
+@client.coaches                     # /coachs
+
+@client.countries                   # /countries
+
+@client.fixtures                    # /fixtures
+@client.live                        # /fixtures?live=all
+@client.rounds                      # /fixtures/rounds
+@client.head_to_head                # /fixtures/headtohead
+@client.fixture_statistics          # /fixtures/statistics
+@client.fixture_events              # /fixtures/events
+@client.fixture_lineups             # /fixtures/lineups
+@client.fixture_player_statistics   # /fixtures/players
+
+@client.leagues                     # /leagues
+@client.leagues_seasons             # /leagues/seasons
+
+@client.odds                        # /odds
+@client.mapping                     # /odds/mapping
+@client.bookmakers                  # /odds/bookmakers
+@client.bets                        # /odds/bets
+
+@client.players                     # /players
+@client.top_scorers                 # /players/topscorers
+@client.players_seasons             # /players/seasons
+
+@client.predictions                 # /predictions
+
+@client.sidelined                   # /sidelined
+
+@client.standings                   # /standings
+
+@client.teams                       # /teams
+@client.team_statistics             # /teams/statistics
+
+@client.timezones                   # /timezone
+
+@client.transfers                   # /transfers
+
+@client.trophies                    # /trophies
+
+@client.venues                      # /venues
+```
+
+All endpoints can also be accessed using `get(endpoint, options)`.
 
 Example:
 ```ruby
@@ -71,52 +241,3 @@ Response:
     ]
 }
 ```
-
-## Mapped Endpoints
-Most endpoints can also be accessed using built in functions. Here you can see how you can call all available endpoints.
-For information on options on each endpoint please review the [official documentation](https://www.api-football.com/documentation-beta).
-
-```ruby
-@client.coaches                     # /coachs
-
-@client.countries                   # /countries
-
-@client.fixtures                    # /fixutres
-@client.live                        # /fixtures?live=all
-@client.rounds                      # /fixtures/rounds
-@client.head_to_head                # /fixtures/headtohead
-@client.fixture_statistics          # /fixtures/statistics
-@client.fixture_events              # /fixtures/events
-@client.fixture_lineups             # /fixtures/lineups
-@client.fixture_player_statistics   # /fixtures/players
-
-@client.leagues                     # /leagues
-@client.leagues_seasons             # /leauges/seasons
-
-@client.odds                        # /odds
-@client.mapping                     # /odds/mapping
-@client.bookmakers                  # /odds/bookmakers
-@client.bets                        # /odds/bets
-
-@client.players                     # /players
-@client.top_scorers                 # /players/topscorers
-@client.players_seasons             # /players/seasons
-
-@client.predictions                 # /predictions
-
-@client.sidelined                   # /sidelined
-
-@client.standings                   # /standings
-
-@client.teams                       # /teams
-@client.team_statistics             # /teams/statistics
-
-@client.timezones                   # /timezone
-
-@client.transfers                   # /transfers
-
-@client.trophies                    # /trophies
-
-@client.venues                      # /venues
-```
-
