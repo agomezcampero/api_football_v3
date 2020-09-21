@@ -8,4 +8,10 @@ group :development do
   gem 'rubocop-rspec'
 end
 
+group :test do
+  gem 'rspec'
+  gem 'simplecov'
+  gem 'webmock'
+end
+
 gemspec

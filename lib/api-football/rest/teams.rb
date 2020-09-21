@@ -5,7 +5,7 @@ module ApiFootball
         get('/teams', options)
       end
 
-      def team_statistic(options = {})
+      def team_statistics(options = {})
         get('/teams/statistics', options)
       end
     end
