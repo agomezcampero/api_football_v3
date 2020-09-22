@@ -23,7 +23,7 @@ module ApiFootballV3
     end
 
     def url
-      @url ||= URI(@base_url + @path + query_params)
+      URI(@base_url + @path + query_params)
     end
 
     def query_params
