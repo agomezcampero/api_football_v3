@@ -1,16 +1,18 @@
 require 'simplecov'
 SimpleCov.start
 
-require 'api-football'
+require 'api_football_v3'
 require 'rspec'
 require 'webmock/rspec'
 
+BASE_URL = 'https://www.api-football.com'
+
 def stub_get(path)
-  stub_request(:get, 'https://www.api-football.com' + path)
+  stub_request(:get, BASE_URL + path)
 end
 
 def a_get(path)
-  a_request(:get, 'https://www.api-football.com' + path)
+  a_request(:get, BASE_URL + path)
 end
 
 def fixture_path

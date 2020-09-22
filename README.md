@@ -8,7 +8,7 @@ This gem won't work with v1 or v2 of the API
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'api-football'
+gem 'api_football_v3'
 ```
 
 And then execute:
@@ -17,13 +17,13 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install api-football
+    $ gem install api_football_v3
 
 ## Configurations
-Configure `api-football` with your API-Key and the URL (depends on whether you are subscribed via RapidApi or ApiSports)
+Configure `api_football_v3` with your API-Key and the URL (depends on whether you are subscribed via RapidApi or ApiSports)
 
 ```ruby
-@client = ApiFootball::Client.new do |config|
+@client = ApiFootballV3::Client.new do |config|
   config.api_key = "YOUR_API_KEY"
   config.base_url = "https://api-football-beta.p.rapidapi.com/" #  or https://v3.football.api-sports.io/
 end
@@ -149,7 +149,6 @@ Response:
     ]
 }
 ```
-
 
 Here you can see how you can call all available endpoints.
 For information on options on each endpoint please review the [official documentation](https://www.api-football.com/documentation-beta).
